@@ -482,9 +482,9 @@ class Game2 {
     this.world = theWorld;
     this.player = thePlayer;
     this.shapes = []
-    this.cNum = int(random(2,5))
-    this.rNum = int(random(2,5))
-    this.tNum = int(random(2,5))
+    this.cNum = 0
+    this.rNum = 0
+    this.tNum = 0
     this.circles = 0
     this.rectangles = 0
     this.triangles = 0
@@ -498,8 +498,9 @@ class Game2 {
     }
     fill(0)
     textSize(15)
-    text("circles: " + this.cNum + " rectangles: " + this.rNum + " triangles: "+ this.tNum, 110, 390)
-
+    text("circles: " + this.cNum, 110, 350 )
+    text("rectangles: " + this.rNum, 110, 370 )
+    text("triangles: " + this.tNum, 110, 390 )
   }
 
   paint(){
@@ -508,16 +509,19 @@ class Game2 {
         var shape = new Shapes(thePlayer.x, thePlayer.y, 1)
         this.shapes.push(shape)
         this.circles++
+        this.cNum++;
       }
       if ((key == 'G') || (key == 'g')) {
         var shape = new Shapes(thePlayer.x, thePlayer.y, 2)
         this.shapes.push(shape)
         this.rectangles++
+        this.rNum++;
       }
       if ((key == 'H') || (key == 'h')) {
         var shape = new Shapes(thePlayer.x, thePlayer.y, 3)
         this.shapes.push(shape)
         this.triangles++
+        this.tNum++;
       }
     }
   }
@@ -544,14 +548,17 @@ class Shapes {
   display() {
     if(this.shapeNum == 1){
       fill(this.color)
+      noStroke()
       ellipse(this.x, this.y, this.xSize, this.xSize)
     }
     if(this.shapeNum == 2){
       fill(this.color)
+      noStroke()
       rect(this.x, this.y, this.xSize, 50)
     }
     if(this.shapeNum == 3){
       fill(this.color)
+      noStroke()
       triangle(this.x, this.y, this.x + 2*(this.ySize), this.y, this.x + this.ySize, this.y - 2*(this.ySize))
     }
   }
